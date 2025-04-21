@@ -1,39 +1,55 @@
-# Heart-disease-prediction
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-import seaborn as sns
-data = pd.read_csv('heart.csv')
-data.head()
-data.tail()
-data.shape
-data.info()
-data.isnull().sum()
-data.describe()
-data['target'].value_counts()
-X = data.drop(columns='target',axis=1)
-Y =data['target']
-print(X)
-print(Y)
-X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.2,stratify=Y,random_state=2)
-print(X.shape,X_train.shape,X_test.shape)
-model = LogisticRegression()
-model.fit(X_train,Y_train)
-X_train_prediction = model.predict(X_train)
-training_data_accuracy = accuracy_score(X_train_prediction,Y_train)
-print('Accuracy on training data : ',training_data_accuracy)
-X_test_predictionn = model.predict(X_test)
-test_data_accuracy = accuracy_score(X_test_predictionn,Y_test)
-print('Accuracy on test data : ',test_data_accuracy)
-input_data = (67,1,0,100,299,0,0,125,1,0.9,1,2,2)
-input_data_as_numpy_array = np.asarray(input_data)
-input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-prediction = model.predict(input_data_reshaped)
-print(prediction)
-if(prediction[0]==0):
-  print('the person does not have heart disease')
-else:
-  print('the person has heart disease')
+### Heart-disease-prediction ###
+
+# 🫀 Heart Disease Prediction using Logistic Regression
+
+This project uses a machine learning approach to predict the likelihood of heart disease in patients based on various medical attributes. The model was built using Logistic Regression, a widely-used algorithm for binary classification problems.
+
+## 📌 Objective
+
+To develop a predictive model that can help in early detection of heart disease, potentially aiding healthcare providers in timely intervention and treatment planning.
+
+## 🛠️ Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+
+## 📊 Dataset
+
+The dataset includes features such as:
+- Age
+- Gender
+- Chest pain type
+- Resting blood pressure
+- Cholesterol
+- Fasting blood sugar
+- Maximum heart rate achieved
+- ST depression (oldpeak)
+- Exercise-induced angina
+- And more...
+
+> Source: [UCI Machine Learning Repository – Heart Disease Dataset](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
+
+## 🔍 Process Overview
+
+1. **Data Cleaning & Preprocessing**
+   - Handling missing values
+   - Encoding categorical variables
+   - Feature scaling
+
+2. **Exploratory Data Analysis (EDA)**
+   - Correlation analysis
+   - Visualizations for insight
+
+3. **Model Building**
+   - Logistic Regression for binary classification
+
+4. **Model Evaluation**
+   - Accuracy, Precision, Recall, F1-score
+   - Confusion Matrix
+
+📈 Results
+The Logistic Regression model achieved good performance with high accuracy and interpretability, making it suitable for medical applications where transparency is important.
